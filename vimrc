@@ -5,6 +5,19 @@ set ofu=syntaxcomplete#Complete
 set backspace=indent,eol,start
 set nocompatible        " sets all config to default ones whether is vi or vim
 
+"""NerdTree"""
+let NERDTreeQuitOnOpen=1
+
+"""Map space to / (search) and c-space to ? (backgwards search)"""
+"""also change my switch between screens keys"""
+map <space> /
+map <c-space> ?
+map <silent> <leader><cr> :noh<cr>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 """ Vundle Stuff: """
 " Vundle setup {{{
 set rtp+=~/.vim/vundle/
@@ -24,7 +37,6 @@ Bundle "kien/tabman.vim"
 Bundle "scrooloose/nerdtree"
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
 Bundle "charleschen/vim-snipmate"
 Bundle "tpope/vim-surround"
 Bundle "mattn/zencoding-vim"
@@ -37,7 +49,6 @@ Bundle "majutsushi/tagbar"
 Bundle "rking/vim-detailed"
 Bundle "maxbrunsfeld/vim-yankstack"
 Bundle "vim-scripts/vimwiki"
-Bundle "Valloric/YouCompleteMe"
 " }}}
 
 " Key Mappings: {{{
@@ -169,3 +180,4 @@ endfunction
 """ Loading seperate vim configs: {{{
     exe "source" "~/.vim/vimrc.$USER"
 " }}}
+
