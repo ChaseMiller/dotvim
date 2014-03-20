@@ -1,4 +1,5 @@
 " vim:foldmethod=marker
+"
 
 if has('gui_running')
     colorscheme rdark
@@ -24,10 +25,11 @@ endif
         let NERDTreeMouseMode = 3
     " }}}
     " MiniBufExplorer plugin {{{
-        map <leader>o :MiniBufExplorer<cr>
-        map <leader>c :TMiniBufExplorer<cr>
+        map <leader>o :MBEFocus<cr>
+        map <leader>c :MBEToggle<cr>
         let g:miniBufExplSplitBelow=0
         let g:miniBufExplSplitEdge=1
+        let g:miniBufExplorerAutoStart=0
     " }}}
     " Omni complete functions {{{
         autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -138,7 +140,7 @@ if has("gui_macvim")
 endif
 " }}}
 " Fivestars stuff {{{
-    nmap <leader><leader>f :cd ~/FiveStars/github/server/fsflask<cr>
+    nmap <leader><leader>f :cd ~/FiveStars/github/server/loyalty<cr>
     nmap <M-w> :NERDTreeFromBookmark fsflask<CR>
     nmap <M-a> :NERDTreeFromBookmark fsapi<CR>
     nmap <M-c> :NERDTreeFromBookmark fsclient<CR>

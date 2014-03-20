@@ -1,9 +1,9 @@
 " vim:foldmethod=marker
 syntax enable
-filetype indent plugin on
 set ofu=syntaxcomplete#Complete
 set backspace=indent,eol,start
 set nocompatible        " sets all config to default ones whether is vi or vim
+filetype off
 
 """NerdTree"""
 let NERDTreeQuitOnOpen=1
@@ -41,15 +41,24 @@ Bundle "charleschen/vim-snipmate"
 Bundle "tpope/vim-surround"
 Bundle "mattn/zencoding-vim"
 Bundle "orestis/pysmell"
-Bundle "charleschen/minibufexpl.vim"
+Bundle "techlivezheng/vim-plugin-minibufexpl"
 Bundle "AndrewRadev/switch.vim"
 Bundle "zeekay/python.vim"
 Bundle "nvie/vim-flake8"
 Bundle "majutsushi/tagbar"
-Bundle "rking/vim-detailed"
 Bundle "maxbrunsfeld/vim-yankstack"
 Bundle "vim-scripts/vimwiki"
+Bundle "vim-scripts/rdark"
+Bundle "mhinz/vim-signify"
+Bundle "lepture/vim-jinja"
+Bundle "jelera/vim-javascript-syntax"
+Bundle "kshenoy/vim-origami"
+Bundle "Yggdroot/indentLine"
+Bundle "scrooloose/syntastic"
+Bundle "ervandew/supertab"
 " }}}
+
+filetype indent plugin on
 
 " Key Mappings: {{{
     let mapleader = ","
@@ -121,10 +130,23 @@ Bundle "vim-scripts/vimwiki"
 " }}}
 
 """ Language Related Stuff: """
+" Soy Section {{{
+    au BufRead,BufNewFile *.soy set filetype=soy
+    au FileType soy setlocal sw=2 sts=2 et
+" }}}
+
+" HTML Section {{{
+    au FileType html setlocal sw=2 sts=2 et
+" }}}
+
+" Jinja Section {{{
+    au BufNewFile,BufRead *.jinja set ft=jinja
+    au FileType jinja setlocal sw=2 sts=2 et
+" }}}
+
 " Python Section {{{
     let python_highlight_all = 1
     au FileType python syn keyword pythonDecorator True None False self
-    au BufNewFile,BufRead *.jinja set syntax=htmljinja
     au BufNewFile,BufRead *.mako set ft=mako
     au FileType python inoremap <buffer> $r return
     au FileType python inoremap <buffer> $i import
@@ -140,22 +162,23 @@ Bundle "vim-scripts/vimwiki"
     let g:pymode_lint_ignore = ""
 " }}}
 " JavaScript section {{{
-    au FileType javascript call JavaScriptFold()
+    au FileType javascript setlocal sw=2 sts=2 et
+    " au FileType javascript call JavaScriptFold()
     au FileType javascript setl fen
     au FileType javascript setl nocindent
     au FileType javascript imap <c-t> AJS.log();<esc>hi
     au FileType javascript imap <c-a> alert();<esc>hi
     au FileType javascript inoremap <buffer> $r return
     au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
-    function! JavaScriptFold()
-        setl foldmethod=syntax
-        setl foldlevelstart=1
-        syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-        function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-        endfunction
-        setl foldtext=FoldText()
-    endfunction
+"    function! JavaScriptFold()
+"        setl foldmethod=syntax
+"        setl foldlevelstart=1
+"        syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+"        function! FoldText()
+"        return substitute(getline(v:foldstart), '{.*', '{...}', '')
+"        endfunction
+"        setl foldtext=FoldText()
+"    endfunction
 " }}}
 
 """ Cool Configurations/shortcuts: """
